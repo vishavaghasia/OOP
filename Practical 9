@@ -1,0 +1,38 @@
+public class Rectangle {
+    double width;
+    double height;
+
+    public Rectangle(double width, double height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    public double getArea() {
+        return width * height;
+    }
+
+    public double getPerimeter() {
+        return 2 * (width + height);
+    }
+
+    public static void main(String[] args) {
+        Rectangle r1 = new Rectangle(4, 40);
+        Rectangle r2 = new Rectangle(3.5, 35.9);
+
+        displayRectangle("Rectangle 1", r1);
+        displayRectangle("Rectangle 2", r2);
+
+        if (r1.getArea() > r2.getArea()) {
+            System.out.println("Rectangle 1 has a larger area.");
+        } else if (r2.getArea() > r1.getArea()) {
+            System.out.println("Rectangle 2 has a larger area.");
+        } else {
+            System.out.println("Both rectangles have the same area.");
+        }
+    }
+
+    public static void displayRectangle(String name, Rectangle r) {
+        System.out.println(name + " - Width: " + r.width + ", Height: " + r.height + 
+                           ", Area: " + r.getArea() + ", Perimeter: " + r.getPerimeter());
+    }
+}
