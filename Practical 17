@@ -1,0 +1,40 @@
+interface Exam {
+    boolean isPassed(int mark);
+}
+
+interface Classify {
+    String getDivision(double average);
+}
+
+class Result implements Exam, Classify {
+    @Override
+    public boolean isPassed(int mark) {
+        return mark >= 35;
+    }
+
+    @Override
+    public String getDivision(double average) {
+        if (average >= 60) {
+            return "First Division";
+        } else if (average >= 50) {
+            return "Second Division";
+        } else if (average >= 35) {
+            return "Third Division";
+        } else {
+            return "No Division";
+        }
+    }
+
+    public static void main(String[] args) {
+        Result res = new Result();
+        
+        int myMark = 75;
+        double myAverage = 68.5;
+
+        System.out.println("Mark: " + myMark);
+        System.out.println("Passed: " + res.isPassed(myMark));
+        
+        System.out.println("Average: " + myAverage);
+        System.out.println("Division: " + res.getDivision(myAverage));
+    }
+}
