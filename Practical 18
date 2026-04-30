@@ -1,0 +1,41 @@
+abstract class Vehicle {
+    public abstract String fuelType();
+    public abstract int noOfWheels();
+}
+
+class Car extends Vehicle {
+    @Override
+    public String fuelType() {
+        return "Petrol/Diesel";
+    }
+
+    @Override
+    public int noOfWheels() {
+        return 4;
+    }
+}
+
+class Bike extends Vehicle {
+    @Override
+    public String fuelType() {
+        return "Petrol";
+    }
+
+    @Override
+    public int noOfWheels() {
+        return 2;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Car car = new Car();
+        Bike bike = new Bike();
+
+        System.out.println("Car fuel type: " + car.fuelType());
+        System.out.println("Car number of wheels: " + car.noOfWheels());
+
+        System.out.println("Bike fuel type: " + bike.fuelType());
+        System.out.println("Bike number of wheels: " + bike.noOfWheels());
+    }
+}
