@@ -1,0 +1,30 @@
+public class SequentialThreads {
+    private int status = 1;
+
+    public synchronized void printNumbers(int start, int end, int threadId) {
+        for (int i = start; i <= end; i++) {
+            while (status != threadId) {
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+            System.out.println("Thread T" + threadId + ": " + i);
+        }
+        status++;
+        notifyAll();
+    }
+
+    public static void main(String[] args) {
+        SequentialThreads obj = new SequentialThreads();
+
+        Thread t1 = new Thread(() -> obj.printNumbers(1, 100, 1));
+        Thread t2 = new Thread(() -> obj.printNumbers(101, 200, 2));
+        Thread t3 = new Thread(() -> obj.printNumbers(201, 300, 3));
+
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
