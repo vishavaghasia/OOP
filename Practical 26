@@ -1,0 +1,39 @@
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+
+public class FileCounter {
+    public static void main(String[] args) {
+        if (args.length != 1) {
+            System.out.println("Usage: java FileCounter filename");
+            return;
+        }
+
+        File file = new File(args[0]);
+        int characters = 0;
+        int words = 0;
+        int lines = 0;
+
+        try (Scanner input = new Scanner(file)) {
+            while (input.hasNextLine()) {
+                String line = input.nextLine();
+                lines++;
+                characters += line.length();
+                
+                String[] wordsArray = line.split("\\s+");
+                for (String word : wordsArray) {
+                    if (word.length() > 0) {
+                        words++;
+                    }
+                }
+            }
+            
+            System.out.println("Characters: " + characters);
+            System.out.println("Words: " + words);
+            System.out.println("Lines: " + lines);
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Error: File not found.");
+        }
+    }
+}
