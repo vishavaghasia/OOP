@@ -1,0 +1,48 @@
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+public class GradeBarChart extends Application {
+
+    @Override
+    public void start(Stage primaryStage) {
+        HBox chartContainer = new HBox(20);
+        chartContainer.setAlignment(Pos.BOTTOM_CENTER);
+        chartContainer.setPadding(new Insets(20));
+
+        chartContainer.getChildren().add(createBar("Projects 20%", 20, Color.RED));
+        chartContainer.getChildren().add(createBar("Quizzes 10%", 10, Color.BLUE));
+        chartContainer.getChildren().add(createBar("Midterm Exams 30%", 30, Color.GREEN));
+        chartContainer.getChildren().add(createBar("Final Exam 40%", 40, Color.ORANGE));
+
+        Scene scene = new Scene(chartContainer, 600, 400);
+        primaryStage.setTitle("Grade Distribution Bar Chart");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    private VBox createBar(String label, double percentage, Color color) {
+        VBox barGroup = new VBox(10);
+        barGroup.setAlignment(Pos.BOTTOM_CENTER);
+
+        double heightMultiplier = 5; 
+        Rectangle rect = new Rectangle(80, percentage * heightMultiplier);
+        rect.setFill(color);
+
+        Text text = new Text(label);
+
+        barGroup.getChildren().addAll(rect, text);
+        return barGroup;
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
