@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class College {
+    private String collegeName;
+
+    public College(String collegeName) {
+        this.collegeName = collegeName;
+    }
+
+    class Admission {
+        private String studentName;
+        private String course;
+
+        public void acceptStudentInfo() {
+            Scanner input = new Scanner(System.in);
+            System.out.print("Enter student name: ");
+            studentName = input.nextLine();
+            System.out.print("Enter course name: ");
+            course = input.nextLine();
+        }
+
+        public void displayAdmissionDetails() {
+            System.out.println("\n--- Admission Details ---");
+            System.out.println("College Name: " + collegeName);
+            System.out.println("Student Name: " + studentName);
+            System.out.println("Course: " + course);
+        }
+    }
+
+    public static void main(String[] args) {
+        College myCollege = new College("Shree Swami Atmanand Saraswati Institute of Technology");
+        
+        College.Admission studentAdmission = myCollege.new Admission();
+        
+        studentAdmission.acceptStudentInfo();
+        studentAdmission.displayAdmissionDetails();
+    }
+}
